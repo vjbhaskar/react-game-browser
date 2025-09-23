@@ -28,8 +28,19 @@ function App() {
           {/* <Grid size={12}>Debba 1</Grid> */}
           <NavBar toggleTheme={onToggleTheme} currentMode={isDark} />
           <Grid display="flex" size={12} direction="row">
-            <Grid size={6}>Debba 2 {`debba${isDark}`}</Grid>
-            <GameGrid />
+            <Grid size={{ xs: 0, md: 2, lg: 2, xl: 2 }}>
+              Debba 2 {`debba${isDark}`}
+            </Grid>
+            <Grid
+              size={{ xs: 12, md: 10, lg: 10, xl: 10 }}
+              sx={{
+                display: "flex",
+                justifyContent: "space-evenly",
+                flexFlow: "wrap",
+              }}
+            >
+              <GameGrid />
+            </Grid>
           </Grid>
         </Grid>
       </CssBaseline>
