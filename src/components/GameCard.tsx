@@ -15,16 +15,13 @@ interface GameCardProps {
 }
 
 const GameCard = ({ game }: GameCardProps) => {
-  console.log(game.parent_platforms);
-  console.log(game.parent_platforms.map((p) => p.platform));
   return (
     <Paper elevation={3}>
       <Card>
         <CardMedia
           component="img"
           sx={{ height: 220 }}
-          image={getCroppedImageUrl(game.background_image)}
-          title="green iguana"
+          image={getCroppedImageUrl(game.background_image, 600, 400)}
         />
         <CardContent>
           <Typography variant="h5" gutterBottom>

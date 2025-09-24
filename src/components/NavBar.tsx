@@ -21,7 +21,7 @@ const NavBar = ({ toggleTheme, currentMode }: NavBarProps) => {
           >
             <div style={{ display: "flex" }}>
               <SportsEsportsIcon
-                sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }}
+                sx={{ display: { xs: "flex", md: "flex" }, margin: 0.7 }}
               />
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 Game Hub

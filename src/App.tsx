@@ -16,9 +16,15 @@ import {
 import CssBaseline from "@mui/material/CssBaseline";
 import useTheme from "./hooks/useTheme";
 import GameGrid from "./components/GameGrid";
-
+import GenreList from "./components/GenreList";
+import { Genre, Platform } from "./utilities/types";
+import PlatFormList from "./components/PlatformList";
 function App() {
   const { theme, isDark, onToggleTheme } = useTheme();
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+  const [selectedPlatform, setSelectedPlatform] = useState<
+    Platform["id"] | null
+  >(null);
 
   console.log("in APP");
   return (
@@ -27,19 +33,32 @@ function App() {
         <Grid container direction="column" spacing={5}>
           {/* <Grid size={12}>Debba 1</Grid> */}
           <NavBar toggleTheme={onToggleTheme} currentMode={isDark} />
-          <Grid display="flex" size={12} direction="row">
+          <Grid display="flex" size={12} container direction="row">
             <Grid size={{ xs: 0, md: 2, lg: 2, xl: 2 }}>
-              Debba 2 {`debba${isDark}`}
+              <GenreList
+                selectedGenre={selectedGenre}
+                onGenreSelected={(genre) => setSelectedGenre(genre)}
+              />
             </Grid>
-            <Grid
-              size={{ xs: 12, md: 10, lg: 10, xl: 10 }}
-              sx={{
-                display: "flex",
-                justifyContent: "space-evenly",
-                flexFlow: "wrap",
-              }}
-            >
-              <GameGrid />
+            <Grid size={{ xs: 12, md: 10, lg: 10, xl: 10 }}>
+              <Grid>
+                <PlatFormList
+                  selectedPlatform={selectedPlatform}
+                  onSelectedPlatform={(id) => setSelectedPlatform(id)}
+                />
+              </Grid>
+              <Grid
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-evenly",
+                  flexFlow: "wrap",
+                }}
+              >
+                <GameGrid
+                  selectedGenre={selectedGenre}
+                  selectedPlatform={selectedPlatform}
+                />
+              </Grid>
             </Grid>
           </Grid>
         </Grid>

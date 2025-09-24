@@ -16,3 +16,24 @@ export interface gameApiResponse {
   count: number;
   results: Game[];
 }
+
+export interface Genre {
+  id: number;
+  name: string;
+  image_background: string;
+}
+
+export interface genreApiResponse {
+  count: number;
+  results: Genre[];
+}
+
+export interface FetchResponse<T> {
+  count: number;
+  results: T[];
+}
+
+export interface Platform {
+  id: number;
+  name: string;
+}

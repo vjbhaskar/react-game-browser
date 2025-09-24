@@ -2,43 +2,42 @@ import { Grid, Skeleton, Typography } from "@mui/material";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
+import { dummyList } from "../utilities/staticData";
+import { Genre, Platform } from "../utilities/types";
 
-const GameGrid = () => {
-  const { games, errorMessage, isLoading } = useGames();
-  const dummyGamesList = new Array(
-    1,
-    2,
-    3,
-    4,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18
+interface GameGridProps {
+  selectedGenre: Genre | null;
+  selectedPlatform: Platform["id"] | null;
+}
+const GameGrid = ({ selectedGenre, selectedPlatform }: GameGridProps) => {
+  const { data, errorMessage, isLoading } = useGames(
+    selectedGenre,
+    selectedPlatform
   );
+
   return (
     <>
       {errorMessage && <Typography> {errorMessage} </Typography>}
       {isLoading &&
-        dummyGamesList.map((n) => {
+        dummyList.map((n, index) => {
           return (
-            <Grid size={{ xs: 8, md: 4, lg: 4, xl: 3 }} sx={{ mb: 1.5 }}>
+            <Grid
+              key={index}
+              size={{ xs: 8, md: 4, lg: 4, xl: 3 }}
+              sx={{ mb: 1.5 }}
+            >
               <GameCardSkeleton key={n} />
             </Grid>
           );
         })}
 
       {!isLoading &&
-        games.map((g) => (
-          <Grid size={{ xs: 8, md: 4, lg: 4, xl: 3 }} sx={{ mb: 1.5 }}>
+        data.map((g) => (
+          <Grid
+            key={g.id}
+            size={{ xs: 8, md: 4, lg: 4, xl: 3 }}
+            sx={{ mb: 1.5 }}
+          >
             <GameCard key={g.id} game={g} />
           </Grid>
         ))}

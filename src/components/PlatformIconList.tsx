@@ -12,6 +12,7 @@ import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendo } from "react-icons/si";
 import { BsGlobe } from "react-icons/bs";
 import { IconType } from "react-icons";
+import { SiPlatformio } from "react-icons/si";
 import React from "react";
 interface PlatformProps {
   platforms: Platform[];
@@ -29,15 +30,16 @@ const PlatformIconList = ({ platforms }: PlatformProps) => {
     nintendo: SiNintendo,
     ios: MdPhoneIphone,
     web: BsGlobe,
+    default: SiPlatformio,
   };
   //   const iconMapper = (name) => {};
 
   return (
     <>
       {platforms.map((platform) => (
-        <Tooltip title={platform.name}>
+        <Tooltip key={platform.id} title={platform.name}>
           <Icon sx={{ mr: 2 }}>
-            {React.createElement(icons[platform.slug])}
+            {React.createElement(icons[platform.slug] || icons.default)}
           </Icon>
         </Tooltip>
       ))}

@@ -7,6 +7,7 @@ const GameCardSkeleton = () => {
         <Skeleton variant="rectangular" width={410} height={300} />
         <CardContent>
           <Skeleton variant="text" />
+          <Skeleton variant="text" />
         </CardContent>
       </Card>
     </Paper>
