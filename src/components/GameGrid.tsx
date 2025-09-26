@@ -3,17 +3,13 @@ import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import { dummyList } from "../utilities/staticData";
-import { Genre, Platform } from "../utilities/types";
+import { GameQuery, Genre, Platform } from "../utilities/types";
 
 interface GameGridProps {
-  selectedGenre: Genre | null;
-  selectedPlatform: Platform["id"] | null;
+  gameQuery: GameQuery;
 }
-const GameGrid = ({ selectedGenre, selectedPlatform }: GameGridProps) => {
-  const { data, errorMessage, isLoading } = useGames(
-    selectedGenre,
-    selectedPlatform
-  );
+const GameGrid = ({ gameQuery }: GameGridProps) => {
+  const { data, errorMessage, isLoading } = useGames(gameQuery);
 
   return (
     <>

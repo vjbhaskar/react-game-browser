@@ -37,3 +37,10 @@ export interface Platform {
   id: number;
   name: string;
 }
+
+export interface GameQuery {
+  genre: Genre | null;
+  platform: Platform["id"] | null;
+  sortOrder: string | null;
+  searchText: string;
+}

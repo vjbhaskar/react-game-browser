@@ -17,14 +17,13 @@ import CssBaseline from "@mui/material/CssBaseline";
 import useTheme from "./hooks/useTheme";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
-import { Genre, Platform } from "./utilities/types";
+import { GameQuery } from "./utilities/types";
 import PlatFormList from "./components/PlatformList";
+import SortSelector from "./components/sortSelector";
+
 function App() {
   const { theme, isDark, onToggleTheme } = useTheme();
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-  const [selectedPlatform, setSelectedPlatform] = useState<
-    Platform["id"] | null
-  >(null);
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
   console.log("in APP");
   return (
@@ -32,19 +31,35 @@ function App() {
       <CssBaseline>
         <Grid container direction="column" spacing={5}>
           {/* <Grid size={12}>Debba 1</Grid> */}
-          <NavBar toggleTheme={onToggleTheme} currentMode={isDark} />
+          <NavBar
+            toggleTheme={onToggleTheme}
+            currentMode={isDark}
+            onSearchSubmit={(searchText) =>
+              setGameQuery({ ...gameQuery, searchText })
+            }
+          />
           <Grid display="flex" size={12} container direction="row">
             <Grid size={{ xs: 0, md: 2, lg: 2, xl: 2 }}>
               <GenreList
-                selectedGenre={selectedGenre}
-                onGenreSelected={(genre) => setSelectedGenre(genre)}
+                selectedGenre={gameQuery.genre}
+                onGenreSelected={(genre) =>
+                  setGameQuery({ ...gameQuery, genre })
+                }
               />
             </Grid>
             <Grid size={{ xs: 12, md: 10, lg: 10, xl: 10 }}>
               <Grid>
                 <PlatFormList
-                  selectedPlatform={selectedPlatform}
-                  onSelectedPlatform={(id) => setSelectedPlatform(id)}
+                  selectedPlatform={gameQuery.platform}
+                  onSelectedPlatform={(id) =>
+                    setGameQuery({ ...gameQuery, platform: id })
+                  }
+                />
+                <SortSelector
+                  selectedSort={gameQuery.sortOrder}
+                  onSelectedSort={(sortVal) => {
+                    setGameQuery({ ...gameQuery, sortOrder: sortVal });
+                  }}
                 />
               </Grid>
               <Grid
@@ -54,10 +69,7 @@ function App() {
                   flexFlow: "wrap",
                 }}
               >
-                <GameGrid
-                  selectedGenre={selectedGenre}
-                  selectedPlatform={selectedPlatform}
-                />
+                <GameGrid gameQuery={gameQuery} />
               </Grid>
             </Grid>
           </Grid>

@@ -3,23 +3,24 @@ import Toolbar from "@mui/material/Toolbar";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import Typography from "@mui/material/Typography";
 import Switch from "@mui/material/Switch";
+import SearchInput from "./SearchInput";
 interface NavBarProps {
   toggleTheme: () => void;
   currentMode: boolean;
+  onSearchSubmit: (str: string) => void;
 }
-const NavBar = ({ toggleTheme, currentMode }: NavBarProps) => {
+const NavBar = ({ toggleTheme, currentMode, onSearchSubmit }: NavBarProps) => {
   return (
     <AppBar position="static" style={{ width: "100%" }}>
-      <div style={{ margin: "2px", width: "98%" }}>
+      <div style={{ margin: "2px", width: "100%" }}>
         <Toolbar disableGutters>
           <div
             style={{
               display: "flex",
               width: "100%",
-              justifyContent: "space-between",
             }}
           >
-            <div style={{ display: "flex" }}>
+            <div style={{ display: "flex", width: "10%" }}>
               <SportsEsportsIcon
                 sx={{ display: { xs: "flex", md: "flex" }, margin: 0.7 }}
               />
@@ -27,9 +28,23 @@ const NavBar = ({ toggleTheme, currentMode }: NavBarProps) => {
                 Game Hub
               </Typography>
             </div>
+            <div style={{ display: "flex", width: "75%" }}>
+              <SearchInput onSearchSubmit={onSearchSubmit} />
+            </div>
 
-            <div>
-              {currentMode ? "Dark Theme" : "Light Theme"}
+            <div
+              style={{
+                display: "flex",
+                width: "15%",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {currentMode ? (
+                <Typography className="switch-text"> Dark Theme </Typography>
+              ) : (
+                <Typography> Light Theme </Typography>
+              )}
               <Switch
                 checked={currentMode}
                 onChange={() => {
