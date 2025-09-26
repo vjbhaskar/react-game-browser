@@ -20,6 +20,7 @@ import GenreList from "./components/GenreList";
 import { GameQuery } from "./utilities/types";
 import PlatFormList from "./components/PlatformList";
 import SortSelector from "./components/sortSelector";
+import GameHeading from "./components/GameHeading";
 
 function App() {
   const { theme, isDark, onToggleTheme } = useTheme();
@@ -39,7 +40,7 @@ function App() {
             }
           />
           <Grid display="flex" size={12} container direction="row">
-            <Grid size={{ xs: 0, md: 2, lg: 2, xl: 2 }}>
+            <Grid size={{ xs: 0, sm: 0, md: 2, lg: 2, xl: 2 }}>
               <GenreList
                 selectedGenre={gameQuery.genre}
                 onGenreSelected={(genre) =>
@@ -47,7 +48,10 @@ function App() {
                 }
               />
             </Grid>
-            <Grid size={{ xs: 12, md: 10, lg: 10, xl: 10 }}>
+            <Grid size={{ xs: 12, sm: 12, md: 10, lg: 10, xl: 10 }}>
+              <Grid>
+                <GameHeading gameQuery={gameQuery} />
+              </Grid>
               <Grid>
                 <PlatFormList
                   selectedPlatform={gameQuery.platform}
