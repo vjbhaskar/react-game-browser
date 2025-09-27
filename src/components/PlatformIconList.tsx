@@ -36,13 +36,18 @@ const PlatformIconList = ({ platforms }: PlatformProps) => {
 
   return (
     <>
-      {platforms.map((platform) => (
-        <Tooltip key={platform.id} title={platform.name}>
-          <Icon sx={{ mr: 2 }}>
-            {React.createElement(icons[platform.slug] || icons.default)}
-          </Icon>
-        </Tooltip>
-      ))}
+      {platforms.map((platform) => {
+        const IconComponent = icons[platform.slug] || icons.default;
+
+        return (
+          <Tooltip key={platform.id} title={platform.name}>
+            <Icon
+              component={IconComponent as React.ElementType}
+              sx={{ mr: 2 }}
+            />
+          </Tooltip>
+        );
+      })}
     </>
   );
 };
