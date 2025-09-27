@@ -10,7 +10,6 @@ const useTheme = () => {
       dark: isDark,
     },
   });
-  console.log("toggleTheme", isDark);
   const onToggleTheme = () => {
     setToggleTheme(!isDark);
   };

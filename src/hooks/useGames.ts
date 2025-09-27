@@ -1,10 +1,4 @@
-import {
-  Game,
-  gameApiResponse,
-  GameQuery,
-  Genre,
-  Platform,
-} from "../utilities/types";
+import { Game, GameQuery } from "../utilities/types";
 import useData from "./useData";
 
 const useGames = (gameQuery: GameQuery) =>

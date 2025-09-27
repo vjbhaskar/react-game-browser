@@ -1,4 +1,4 @@
-import { Icon, IconButton, Tooltip, Typography } from "@mui/material";
+import { Icon, Tooltip } from "@mui/material";
 import { Platform } from "../utilities/types";
 import {
   FaWindows,

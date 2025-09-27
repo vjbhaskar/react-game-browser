@@ -1,25 +1,19 @@
-import { useEffect, useMemo, useState } from "react";
-import Button from "@mui/material/Button";
+import { useState } from "react";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import "./App.css";
 import { Grid } from "@mui/material";
-import { Widgets } from "@mui/icons-material";
 import NavBar from "./components/NavBar";
-import {
-  createTheme,
-  ThemeProvider,
-  useColorScheme,
-} from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import useTheme from "./hooks/useTheme";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import { GameQuery } from "./utilities/types";
 import PlatFormList from "./components/PlatformList";
-import SortSelector from "./components/sortSelector";
+import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
 
 function App() {
@@ -40,7 +34,10 @@ function App() {
             }
           />
           <Grid display="flex" size={12} container direction="row">
-            <Grid size={{ xs: 0, sm: 0, md: 2, lg: 2, xl: 2 }}>
+            <Grid
+              size={{ xs: 0, sm: 0, md: 2, lg: 2, xl: 2 }}
+              sx={{ display: { xs: "none", sm: "none", md: "block" } }}
+            >
               <GenreList
                 selectedGenre={gameQuery.genre}
                 onGenreSelected={(genre) =>

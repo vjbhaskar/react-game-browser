@@ -1,6 +1,5 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import usePlatforms from "../hooks/usePlatforms";
-import { useState } from "react";
 import { Platform } from "../utilities/types";
 
 interface PlatformPros {

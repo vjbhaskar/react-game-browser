@@ -1,9 +1,9 @@
-import { Grid, Skeleton, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import { dummyList } from "../utilities/staticData";
-import { GameQuery, Genre, Platform } from "../utilities/types";
+import { GameQuery } from "../utilities/types";
 
 interface GameGridProps {
   gameQuery: GameQuery;
