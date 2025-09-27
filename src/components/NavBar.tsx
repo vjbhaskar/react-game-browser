@@ -17,6 +17,7 @@ const NavBar = ({ toggleTheme, currentMode, onSearchSubmit }: NavBarProps) => {
           <div
             style={{
               display: "flex",
+              justifyContent: "space-between",
               width: "100%",
             }}
           >
@@ -24,11 +25,18 @@ const NavBar = ({ toggleTheme, currentMode, onSearchSubmit }: NavBarProps) => {
               <SportsEsportsIcon
                 sx={{ display: { xs: "flex", md: "flex" }, margin: 0.7 }}
               />
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  flexGrow: 1,
+                  display: { xs: "none", sm: "none", md: "block", lg: "block" },
+                }}
+              >
                 Game Hub
               </Typography>
             </div>
-            <div style={{ display: "flex", width: "75%" }}>
+            <div style={{ display: "flex", width: "65%" }}>
               <SearchInput onSearchSubmit={onSearchSubmit} />
             </div>
 
@@ -41,9 +49,32 @@ const NavBar = ({ toggleTheme, currentMode, onSearchSubmit }: NavBarProps) => {
               }}
             >
               {currentMode ? (
-                <Typography className="switch-text"> Dark Theme </Typography>
+                <Typography
+                  className="switch-text"
+                  sx={{
+                    display: {
+                      xs: "none",
+                      sm: "none",
+                      md: "block",
+                      lg: "block",
+                    },
+                  }}
+                >
+                  Dark Theme
+                </Typography>
               ) : (
-                <Typography> Light Theme </Typography>
+                <Typography
+                  sx={{
+                    display: {
+                      xs: "none",
+                      sm: "none",
+                      md: "block",
+                      lg: "block",
+                    },
+                  }}
+                >
+                  Light Theme
+                </Typography>
               )}
               <Switch
                 checked={currentMode}
